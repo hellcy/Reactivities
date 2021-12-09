@@ -1,0 +1,12 @@
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/bin/Debug/net6.0/Domain.deps.json
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/bin/Debug/net6.0/Domain.dll
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/bin/Debug/net6.0/ref/Domain.dll
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/bin/Debug/net6.0/Domain.pdb
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/obj/Debug/net6.0/Domain.csproj.AssemblyReference.cache
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/obj/Debug/net6.0/Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/obj/Debug/net6.0/Domain.AssemblyInfoInputs.cache
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/obj/Debug/net6.0/Domain.AssemblyInfo.cs
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/obj/Debug/net6.0/Domain.csproj.CoreCompileInputs.cache
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/obj/Debug/net6.0/Domain.dll
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/obj/Debug/net6.0/ref/Domain.dll
+/Users/yuancheng/Documents/DotNet/Reactivities/Domain/obj/Debug/net6.0/Domain.pdb
