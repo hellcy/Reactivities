@@ -13,7 +13,7 @@ namespace API
 {
   public class Program
   {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
       var host = CreateHostBuilder(args).Build();
       using var scope = host.Services.CreateScope();
@@ -25,7 +25,9 @@ namespace API
         var context = services.GetRequiredService<DataContext>();
 
         // will run migration and create the DB if we don't already have it
-        context.Database.Migrate();
+        await context.Database.MigrateAsync();
+
+        await Seed.SeedData(context);
       }
       catch (Exception ex)
       {
@@ -34,7 +36,7 @@ namespace API
       }
 
       // run the application
-      host.Run();
+      await host.RunAsync();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
