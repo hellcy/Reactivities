@@ -60,8 +60,9 @@ function App() {
         setSubmitting(false)
       })
     } else {
+      activity.id = uuid()
+
       agent.Activities.create(activity).then(() => {
-        activity.id = uuid()
         setActivities([...activities, activity])
         setSelectedActivity(activity)
         setEditMode(false)
