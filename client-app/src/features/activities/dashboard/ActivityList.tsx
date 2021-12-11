@@ -4,10 +4,11 @@ import { Activity } from '../../../app/models/activity'
 
 interface Props {
     activities: Activity[]
+    selectActivity: (id: string) => void
 }
 
 export default function ActivityList(props: Props) {
-    const { activities } = props
+    const { activities, selectActivity } = props
     return (
         <Segment>
             <Item.Group divided>
@@ -24,6 +25,7 @@ export default function ActivityList(props: Props) {
                             </Item.Description>
                             <Item.Extra>
                                 <Button
+                                    onClick={() => selectActivity(activity.id)}
                                     floated="right"
                                     content="View"
                                     color="blue"
