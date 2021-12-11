@@ -21,5 +21,13 @@ namespace API.Controllers
     {
       return await Mediator.Send(new Details.Query() { Id = id });
     }
+
+    // we could omit the [FromBody] annotation because we already have [ApiController] annotation in the BaseApiController
+    // so the controller is aware where to find the Activity
+    [HttpPost]
+    public async Task<IActionResult> CreateActivity(Activity activity)
+    {
+      return Ok(await Mediator.Send(new Create.Command() { Activity = activity }));
+    }
   }
 }
