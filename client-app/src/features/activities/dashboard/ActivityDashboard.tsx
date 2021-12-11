@@ -6,36 +6,42 @@ import ActivityForm from '../form/ActivityFrom'
 import ActivityList from './ActivityList'
 
 interface Props {
-    activities: Activity[]
-    selectedActivity: Activity | undefined
-    selectActivity: (id: string) => void
-    cancelSelectActivity: () => void
+  activities: Activity[]
+  selectedActivity: Activity | undefined
+  selectActivity: (id: string) => void
+  cancelSelectActivity: () => void
+  editMode: boolean
+  openForm: (id: string) => void
+  closeForm: () => void
 }
 
 export default function ActivityDashboard(props: Props) {
-    const {
-        activities,
-        selectedActivity,
-        selectActivity,
-        cancelSelectActivity,
-    } = props
-    return (
-        <Grid>
-            <Grid.Column width="10">
-                <ActivityList
-                    activities={activities}
-                    selectActivity={selectActivity}
-                />
-            </Grid.Column>
-            <Grid.Column width="6">
-                {selectedActivity && (
-                    <ActivityDetails
-                        activity={selectedActivity}
-                        cancelSelectActivity={cancelSelectActivity}
-                    />
-                )}
-                <ActivityForm />
-            </Grid.Column>
-        </Grid>
-    )
+  const {
+    activities,
+    selectedActivity,
+    selectActivity,
+    cancelSelectActivity,
+    editMode,
+    openForm,
+    closeForm,
+  } = props
+  return (
+    <Grid>
+      <Grid.Column width="10">
+        <ActivityList activities={activities} selectActivity={selectActivity} />
+      </Grid.Column>
+      <Grid.Column width="6">
+        {selectedActivity && !editMode && (
+          <ActivityDetails
+            activity={selectedActivity}
+            cancelSelectActivity={cancelSelectActivity}
+            openForm={openForm}
+          />
+        )}
+        {editMode && (
+          <ActivityForm closeForm={closeForm} activity={selectedActivity} />
+        )}
+      </Grid.Column>
+    </Grid>
+  )
 }
