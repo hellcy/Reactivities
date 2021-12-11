@@ -24,19 +24,19 @@ namespace Application.Activities
       public async Task<List<Activity>> Handle(Query request, CancellationToken cancellationToken)
       {
         // this code block is to demonstration how cancellationToken is being used
-        try
-        {
-          for (var i = 0; i < 10; ++i)
-          {
-            cancellationToken.ThrowIfCancellationRequested();
-            await Task.Delay(1000, cancellationToken);
-            _logger.LogInformation($"Task {i} has completed.");
-          }
-        }
-        catch (Exception ex) when (ex is TaskCanceledException)
-        {
-          _logger.LogInformation("Task was cancelled.");
-        }
+        // try
+        // {
+        //   for (var i = 0; i < 10; ++i)
+        //   {
+        //     cancellationToken.ThrowIfCancellationRequested();
+        //     await Task.Delay(1000, cancellationToken);
+        //     _logger.LogInformation($"Task {i} has completed.");
+        //   }
+        // }
+        // catch (Exception ex) when (ex is TaskCanceledException)
+        // {
+        //   _logger.LogInformation("Task was cancelled.");
+        // }
 
         return await _context.Activities.ToListAsync(cancellationToken);
       }
