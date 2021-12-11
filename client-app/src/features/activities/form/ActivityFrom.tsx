@@ -5,10 +5,11 @@ import { Activity } from '../../../app/models/activity'
 interface Props {
   closeForm: () => void
   selectedActivity: Activity | undefined
+  createOrEdit: (activity: Activity) => void
 }
 
 export default function ActivityForm(props: Props) {
-  const { closeForm, selectedActivity } = props
+  const { closeForm, selectedActivity, createOrEdit } = props
   const initialState = selectedActivity ?? {
     id: '',
     title: '',
@@ -29,7 +30,7 @@ export default function ActivityForm(props: Props) {
   }
 
   function handleSubmit() {
-    console.log(activity)
+    createOrEdit(activity)
   }
 
   return (
