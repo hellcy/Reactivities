@@ -39,7 +39,10 @@ export default function ActivityDashboard(props: Props) {
           />
         )}
         {editMode && (
-          <ActivityForm closeForm={closeForm} activity={selectedActivity} />
+          <ActivityForm
+            closeForm={closeForm}
+            selectedActivity={selectedActivity}
+          />
         )}
       </Grid.Column>
     </Grid>
