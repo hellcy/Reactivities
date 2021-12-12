@@ -1,8 +1,7 @@
-import { SyntheticEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Icon, Item, Segment } from 'semantic-ui-react'
 import { Activity } from '../../../app/models/activity'
-import { useStore } from '../../../app/stores/store'
+import React from 'react'
 
 interface Props {
   activity: Activity
@@ -10,21 +9,6 @@ interface Props {
 
 export default function ActivityListItem(props: Props) {
   const { activity } = props
-  const [target, setTarget] = useState('')
-
-  const { activityStore } = useStore()
-
-  const { loading, deleteActivity } = activityStore
-
-  // this is to make sure when we click Delete button,
-  // only the clicked button is loading
-  function handleActivityDelete(
-    e: SyntheticEvent<HTMLButtonElement>,
-    id: string
-  ) {
-    setTarget(e.currentTarget.name)
-    deleteActivity(id)
-  }
 
   return (
     <Segment.Group>
