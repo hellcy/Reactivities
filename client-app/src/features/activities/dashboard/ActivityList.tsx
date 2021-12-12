@@ -1,19 +1,14 @@
+import { observer } from 'mobx-react-lite'
 import React, { SyntheticEvent, useState } from 'react'
 import { Button, Item, Label, Segment } from 'semantic-ui-react'
-import { Activity } from '../../../app/models/activity'
 import { useStore } from '../../../app/stores/store'
 
-interface Props {
-  activities: Activity[]
-  deleteActivity: (id: string) => void
-  submitting: boolean
-}
-
-export default function ActivityList(props: Props) {
-  const { activities, deleteActivity, submitting } = props
+export default observer(function ActivityList() {
   const [target, setTarget] = useState('')
 
   const { activityStore } = useStore()
+
+  const { activities, loading, deleteActivity } = activityStore
 
   // this is to make sure when we click Delete button,
   // only the clicked button is loading
@@ -48,7 +43,7 @@ export default function ActivityList(props: Props) {
                 />
                 <Button
                   name={activity.id}
-                  loading={submitting && target === activity.id}
+                  loading={loading && target === activity.id}
                   onClick={(e) => handleActivityDelete(e, activity.id)}
                   floated="right"
                   content="Delete"
@@ -62,4 +57,4 @@ export default function ActivityList(props: Props) {
       </Item.Group>
     </Segment>
   )
-}
+})
