@@ -1,17 +1,19 @@
 import React, { SyntheticEvent, useState } from 'react'
 import { Button, Item, Label, Segment } from 'semantic-ui-react'
 import { Activity } from '../../../app/models/activity'
+import { useStore } from '../../../app/stores/store'
 
 interface Props {
   activities: Activity[]
-  selectActivity: (id: string) => void
   deleteActivity: (id: string) => void
   submitting: boolean
 }
 
 export default function ActivityList(props: Props) {
-  const { activities, selectActivity, deleteActivity, submitting } = props
+  const { activities, deleteActivity, submitting } = props
   const [target, setTarget] = useState('')
+
+  const { activityStore } = useStore()
 
   // this is to make sure when we click Delete button,
   // only the clicked button is loading
@@ -39,7 +41,7 @@ export default function ActivityList(props: Props) {
               </Item.Description>
               <Item.Extra>
                 <Button
-                  onClick={() => selectActivity(activity.id)}
+                  onClick={() => activityStore.selectActivity(activity.id)}
                   floated="right"
                   content="View"
                   color="blue"
