@@ -20,6 +20,23 @@ export default class ActivityStore {
     )
   }
 
+  // group activities by their Dates
+  // using Javascript reduce function, it takes a Reducer callback function
+  // the initial state is an empty object, and for each activity we
+  // 1. create new array for the new date entry
+  // 2. or append current activity to the existing date entry
+  get groupedActivities() {
+    return Object.entries(
+      this.activitiesByDate.reduce((activities, activity) => {
+        const date = activity.date
+        activities[date] = activities[date]
+          ? [...activities[date], activity]
+          : [activity]
+        return activities
+      }, {} as { [key: string]: Activity[] })
+    )
+  }
+
   loadActivities = async () => {
     this.loadingInitial = true
     try {
