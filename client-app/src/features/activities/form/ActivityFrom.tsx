@@ -1,15 +1,24 @@
 import { observer } from 'mobx-react-lite'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { Button, Form, Segment } from 'semantic-ui-react'
+import LoadingComponent from '../../../app/layout/LoadingComponent'
 import { Activity } from '../../../app/models/activity'
 import { useStore } from '../../../app/stores/store'
 
 export default observer(function ActivityForm() {
   const { activityStore } = useStore()
-  const { selectedActivity, createActivity, updateActivity, loading } =
-    activityStore
+  const {
+    createActivity,
+    updateActivity,
+    loading,
+    loadActivity,
+    loadingInitial,
+  } = activityStore
 
-  const initialState = selectedActivity ?? {
+  const { id } = useParams<{ id: string }>()
+
+  const [activity, setActivity] = useState<Activity>({
     id: '',
     title: '',
     category: '',
@@ -17,9 +26,11 @@ export default observer(function ActivityForm() {
     date: '',
     city: '',
     venue: '',
-  }
+  })
 
-  const [activity, setActivity] = useState<Activity>(initialState)
+  useEffect(() => {
+    if (id) loadActivity(id).then((activity) => setActivity(activity!))
+  }, [id, loadActivity])
 
   function handleInputChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -31,6 +42,9 @@ export default observer(function ActivityForm() {
   function handleSubmit() {
     activity.id ? updateActivity(activity) : createActivity(activity)
   }
+
+  if (loadingInitial)
+    return <LoadingComponent inverted={true} content="Loading activity..." />
 
   return (
     <Segment clearing>
